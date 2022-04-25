@@ -27,8 +27,17 @@ form.addEventListener('submit', async (event) => {
     i++;
 
     if (i < 11) {
+      let postDescCheck = post.description;
+
+      if (postDescCheck !== null) {
+        if (postDescCheck.length > 100) {
+          const String = postDescCheck.substr(0, 99);
+          postDescCheck = `${String}...`;
+        }
+      }
+
       postUser.innerText = post.user.name;
-      postDesc.innerText = post.description;
+      postDesc.innerText = postDescCheck;
       postImg.src = post.urls.small;
 
       container.appendChild(clone);
